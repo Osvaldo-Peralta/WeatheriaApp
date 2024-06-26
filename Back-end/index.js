@@ -2,12 +2,13 @@ const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
 const app = express();
+require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
-const apiKey = "58344739b5c534e24a541e9587861e84";
+const apiKey = process.env.CLAVE_API;
 /* Declaramos las rutas */
 
 //Ruta Principal, Todo esta OK!
