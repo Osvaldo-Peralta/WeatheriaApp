@@ -27,8 +27,21 @@ app.get("/api/weather", async (req, res) => {
     res.json(response.data);
   } catch (error) {
     res.status(500).json({
-      error: "No se pudo obtener el clima para la ciudad especificada",
+      error: "No se pudo obtener el clima para la ciudad especificada (COD00)",
     });
+  }
+});
+
+//Pronostico diario (forecast)
+app.get("/api/forecast", async (req, res) => {
+  const { city } = req.query;
+  try {
+    const response = await axios.get(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}&lang=es`
+    );
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: "Error al obtener el pronostico" });
   }
 });
 
